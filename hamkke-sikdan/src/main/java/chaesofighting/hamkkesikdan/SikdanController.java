@@ -1,5 +1,6 @@
 package chaesofighting.hamkkesikdan;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,16 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-
+@RequiredArgsConstructor
 public class SikdanController {
     //입력값 키, 몸무게, 성별, 질환 , 운동정도(추가됨), 나이
     //(기초대사량 * 활동계수)
     //=> 입력값은 총칼로리량 질환정보 랜덤변수
     private final SikdanService sikdanService;
-    @Autowired
-    public SikdanController(SikdanService sikdanService){
-        this.sikdanService = sikdanService;
-    }
+
     @GetMapping("/example") //리소스 -> 조회
     public String getSikdanForm(){
         return "output";
