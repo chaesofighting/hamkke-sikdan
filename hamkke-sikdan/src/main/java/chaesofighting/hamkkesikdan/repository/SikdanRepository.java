@@ -30,4 +30,11 @@ public class SikdanRepository {
         sikdanResult.setDinner(sikdan.getDinner());
         return sikdanResult;
     }
+
+    /**
+     * 식단 db에 저장
+     */
+    public void save(Sikdan sikdan) {
+        em.persist(sikdan);
+    }
 }
