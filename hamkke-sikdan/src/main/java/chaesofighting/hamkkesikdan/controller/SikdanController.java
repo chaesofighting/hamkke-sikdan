@@ -24,30 +24,32 @@ public class SikdanController {
     //메인 페이지
     @RequestMapping("/")
     public String main() {
-        return "main";  //main.html을 찾아감.
+        return "index copy";  //index copy.html을 찾아감.
     }
 
     //사용자 입력 페이지
-    @GetMapping("/users") //리소스 -> 조회
+    @GetMapping("/calculate") //리소스 -> 조회
     public String createForm(Model model) {
         model.addAttribute("userForm", new UserForm());
-        return "usersCalorie";
+        //return "usersCalorie";
+        return "calculate";
     }
 
     //사용자 입력 페이지
-    @PostMapping("/users") //리소스 서버에 저장
+    @PostMapping("/calculate") //리소스 서버에 저장
     public String create(UserForm form) { //결과 반환을 딱히 안해도 되는건가
         this.form.setCalorie(form.getCalorie());
         this.form.setSyndrome(form.getSyndrome());
         this.form.setRand(form.getRand());
-        return "redirect:/usersCalorie";
+        return "redirect:/calculate";
     }
 
     //식단 추천 페이지
     @GetMapping("/sikdans")
     public String sikdan(Model model) {
-        //SikdanResult sikdanResult = sikdanService.showSikdan(form.getCalorie(), form.getSyndrome(), form.getRand());
-        //model.addAttribute("sikdanResult", sikdanResult);
+        SikdanResult sikdanResult = sikdanService.showSikdan(form.getCalorie(), form.getSyndrome(), form.getRand());
+        model.addAttribute("sikdanResult", sikdanResult);
         return "sikdan";
     }
+
 }

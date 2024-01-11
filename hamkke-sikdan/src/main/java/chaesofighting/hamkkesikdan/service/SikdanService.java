@@ -19,4 +19,5 @@ public class SikdanService {
     public SikdanResult showSikdan(int calorie, int syndrome, int rand) {
         return sikdanRepository.findByCalorieSyndromeRand(calorie, syndrome, rand);
     }
+
 }
