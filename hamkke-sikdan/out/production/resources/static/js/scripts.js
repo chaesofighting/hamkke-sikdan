@@ -1,8 +1,11 @@
+
+
 /*!
 * Start Bootstrap - Clean Blog v6.0.9 (https://startbootstrap.com/theme/clean-blog)
 * Copyright 2013-2023 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)
 */
+
 window.addEventListener('DOMContentLoaded', () => {
     let scrollPos = 0;
     const mainNav = document.getElementById('mainNav');
@@ -79,7 +82,8 @@ document.getElementById('bmrForm').addEventListener('submit', function (e) {
         totalCalories -= 300; // Subtract 300 calories for Obesity
     }
 
-    const rand = Math.floor(Math.random() * 4);
+    window.totalCalories = 1800;
+    window.syndrome = 3;
 
     document.getElementById('result').innerHTML = `<p class="lead">당신의 하루 필요 칼로리는 <strong>${totalCalories} kcal</strong> 입니다.</p>`;
 
@@ -89,33 +93,61 @@ function calculateBMR(age, weight, height) {
     return 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
 }
 
-document.getElementById('receiveDietRecommendationsBtn').addEventListener('click', function (e) {
-    e.preventDefault();
 
-    // New code for sending data to the backend
-    sendDataToBackend(totalCalories, syndrome, rand);
-});
+function moveToIndexCopy2() {
+    // 페이지 이동
 
-function sendDataToBackend(totalCalories, syndrome, rand) {
-    // Make an AJAX request to the Spring Boot backend endpoint
-    $.ajax({
-        url: 'http://localhost:8080/calculate', // Replace with your actual Spring Boot backend endpoint
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            totalCalories: totalCalories,
-            syndrome: syndrome,
-            rand: rand
-        }),
-        success: function (response) {
-            // Handle the successful response from the backend
-            console.log('Data sent successfully:', response);
-            // Optionally, you can redirect to another page after a successful response
-            window.location.href = 'index copy 2.html';
-        },
-        error: function (error) {
-            // Handle errors during the AJAX request
-            console.error('Error sending data:', error);
+    const result = {
+        아침: [
+            {
+                menu: '계란',
+                g: 100,
+            },
+            {
+                menu: '계란',
+                g: 100,
+            }
+        ],
+        아침간식: null,
+        점심: [],
+        점심간식: [],
+        저녁: [],
+    };
+    window.localStorage.setItem('result', JSON.stringify(result));
+
+    // window.location.href = "index copy 2.html";
+
+
+
+    window.axios.get('/sikdans', {
+        params: {
+            calorie: totalCalories,
+            syndrome,
         }
+    }).then((response) => {
+        console.log(response);
+        const result = response.data;
+        window.localStorage.setItem('result', JSON.stringify(result));
+
+        window.location.href = "/sikdan";
     });
 }
+
+
+
+// 나머지 함수들은 유지
+
+function getDataFromLocalStorage() {
+    const result = JSON.parse(window.localStorage.getItem('result'));
+    console.log(result);
+    return result;
+};
+
+function drawDataToDOM(data) {
+
+};
+
+function loadResultPage() {
+    const data = getDataFromLocalStorage();
+    drawDataToDOM(data);
+};

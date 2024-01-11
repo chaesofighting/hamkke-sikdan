@@ -18,6 +18,8 @@
         rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -41,7 +43,7 @@
         </div>
     </nav>
     <!-- Page Header-->
-    <header class="masthead" style="background-image: url('static/assets/img/calculate.jpg')">
+    <header class="masthead" style="background-image: url('assets/img/calculate.jpg')">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -65,19 +67,22 @@
                     <form id="bmrForm">
                         <div class="form-group bg-light p-3 rounded shadow-sm">
                             <label for="age" class="mb-3">나이:</label>
-                            <input type="number" class="form-control" id="age" placeholder="나이를 입력하세요" required>
+                            <input type="number" class="form-control" id="age" placeholder="나이를 입력하세요" required
+                                value="20">
                         </div>
                         <div class="form-group bg-light p-3 rounded shadow-sm">
                             <label for="weight" class="mb-3">몸무게 (kg):</label>
-                            <input type="number" class="form-control" id="weight" placeholder="몸무게를 입력하세요" required>
+                            <input type="number" class="form-control" id="weight" placeholder="몸무게를 입력하세요" required
+                                value="60">
                         </div>
                         <div class="form-group bg-light p-3 rounded shadow-sm">
                             <label for="height" class="mb-3">키 (cm):</label>
-                            <input type="number" class="form-control" id="height" placeholder="키를 입력하세요" required>
+                            <input type="number" class="form-control" id="height" placeholder="키를 입력하세요" required
+                                value="170">
                         </div>
                         <div class="form-group bg-light p-3 rounded shadow-sm">
                             <label for="activityLevel" class="mb-3">활동 수준:</label>
-                            <select class="form-control" id="activityLevel">
+                            <select class="form-control" id="activityLevel" value="1.2">
                                 <option value="1.2">1: 거의 활동하지 않음 (1.2)</option>
                                 <option value="1.375">2: 가벼운 활동 (1.375)</option>
                                 <option value="1.55">3: 중간 수준 활동 (1.55)</option>
@@ -87,7 +92,7 @@
                         </div>
                         <div class="form-group bg-light p-3 rounded shadow-sm mb-4">
                             <label for="syndrome" class="mb-3">질환 정보:</label>
-                            <select class="form-control" id="syndrome">
+                            <select class="form-control" id="syndrome" value="0">
                                 <option value="0">없음</option>
                                 <option value="1">비만</option>
                                 <option value="2">당뇨병</option>
@@ -105,8 +110,7 @@
                 <!-- Divider-->
                 <hr class="my-4" />
                 <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a id="receiveDietRecommendationsBtn"
-                        class="btn btn-primary text-uppercase" href="sikdan">식단 추천받기 -></a></div>
+                <button class="btn btn-primary d-block mx-auto mb-4" onclick="moveToIndexCopy2()">식단 추천받기 -></button>
             </div>
         </div>
     </div>
@@ -152,6 +156,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </body>
 
